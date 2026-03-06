@@ -1,4 +1,12 @@
-import "dotenv/config";
+import dotenv from "dotenv";
+
+dotenv.config({
+  path: `.env.${process.env.NODE_ENV || "development"}`,
+});
+
+//! To run the backend for DEVELOPMENT -> npm run server
+//! To run the backend for PRODUCTION -> npm start
+
 import express, { Request, Response } from "express";
 import cors from "cors";
 import connectDB from "./config/db.js";
