@@ -11,17 +11,25 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import { clerkMiddleware } from "@clerk/express";
 
-import connectDB from "./config/db.ts";
+import connectDB from "./config/db";
+import { clerkWebhook } from "./controllers/webhooks.js";
 
 const app = express();
 
-// Database Connection:
+// Database Connection
 connectDB();
 
-// Middlewares:
+// Middlewares
 app.use(cors());
 app.use(express.json());
 app.use(clerkMiddleware());
+
+// webhook route
+app.post(
+  "/webhooks/clerk",
+  express.raw({ type: "application/json" }),
+  clerkWebhook,
+);
 
 const port = process.env.PORT || 3000;
 
@@ -30,5 +38,5 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
+  console.log(`Server running on port ${port}`);
 });
