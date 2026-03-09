@@ -9,6 +9,8 @@ dotenv.config({
 
 import express, { Request, Response } from "express";
 import cors from "cors";
+import { clerkMiddleware } from "@clerk/express";
+
 import connectDB from "./config/db.js";
 
 const app = express();
@@ -19,6 +21,7 @@ connectDB();
 // Middlewares:
 app.use(cors());
 app.use(express.json());
+app.use(clerkMiddleware());
 
 const port = process.env.PORT || 3000;
 
