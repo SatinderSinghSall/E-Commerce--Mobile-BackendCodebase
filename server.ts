@@ -11,7 +11,7 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import { clerkMiddleware } from "@clerk/express";
 
-import connectDB from "./config/db.js";
+import connectDB from "./config/db.ts";
 
 const app = express();
 
