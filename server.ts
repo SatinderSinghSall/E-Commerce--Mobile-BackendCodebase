@@ -16,20 +16,20 @@ import { clerkWebhook } from "./controllers/webhooks.js";
 
 const app = express();
 
-// Database Connection
+// DB
 connectDB();
 
-// Middlewares
-app.use(cors());
-app.use(express.json());
-app.use(clerkMiddleware());
-
-// webhook route
+// Webhook routes:
 app.post(
   "/webhooks/clerk",
   express.raw({ type: "application/json" }),
   clerkWebhook,
 );
+
+// Middlewares
+app.use(cors());
+app.use(express.json());
+app.use(clerkMiddleware());
 
 const port = process.env.PORT || 3000;
 
