@@ -11,8 +11,9 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import { clerkMiddleware } from "@clerk/express";
 
-import connectDB from "./config/db";
+import connectDB from "./config/db.js";
 import { clerkWebhook } from "./controllers/webhooks.js";
+import makeAdmin from "./scripts/makeAdmin.js";
 
 const app = express();
 
@@ -36,6 +37,8 @@ const port = process.env.PORT || 3000;
 app.get("/", (req: Request, res: Response) => {
   res.send("Backend Server is Live! 🚀");
 });
+
+makeAdmin();
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
