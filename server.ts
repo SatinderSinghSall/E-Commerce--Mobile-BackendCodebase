@@ -1,8 +1,9 @@
+import "./config/env.js";
 import dotenv from "dotenv";
 
-dotenv.config({
-  path: `.env.${process.env.NODE_ENV || "development"}`,
-});
+// dotenv.config({
+//   path: `.env.${process.env.NODE_ENV || "development"}`,
+// });
 
 // fallback if environment-specific file doesn't exist
 dotenv.config();
